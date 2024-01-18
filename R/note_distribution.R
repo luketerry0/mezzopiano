@@ -36,8 +36,5 @@ note_distribution <- function(midi_file) {
                             "B" = 11)
   notes$key_signature_letter <- (strsplit(notes$key_signature, " ") %>% unlist)[c(TRUE, FALSE)]
   key_signature_by_notes <- unlist(key_signature_key[notes$key_signature_letter])
-  notes$chromatic_scale_degree <- (key_signature_by_notes + (notes$chromatic_degree_c - 1)) %%  12
-
-  # bind the scale degrees of the notes based on diatonic keys
-
+  notes$chromatic_scale_degree <- 1 + ((notes$chromatic_degree_c - 1) - key_signature_by_notes) %% 12
   }
